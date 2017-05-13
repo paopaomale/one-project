@@ -1,0 +1,8 @@
+{
+    "WeexSVGPlugin": {
+        "name": "WeexSVGPlugin",
+        "type": "podspec",
+        "spec": "0.1.0",
+        "count": 1
+    }
+}

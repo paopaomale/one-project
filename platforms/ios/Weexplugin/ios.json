@@ -1,0 +1,82 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "WeexpluginConfig.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"WXImgLoaderImpl\"><param name=\"category\" value=\"handler\" /><param name=\"ios-package\" value=\"WXImgLoaderImpl\" /><param name=\"protocol\" value=\"WXImgLoaderProtocol\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGComponent\" /><param name=\"api\" value=\"svg\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGLineComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGLineComponent\" /><param name=\"api\" value=\"line\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGCircleComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGCircleComponent\" /><param name=\"api\" value=\"circle\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGRectComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGRectComponent\" /><param name=\"api\" value=\"rect\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGEllipseComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGEllipseComponent\" /><param name=\"api\" value=\"ellipse\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGPolygonComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGPolygonComponent\" /><param name=\"api\" value=\"polygon\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGPolylineComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGPolylineComponent\" /><param name=\"api\" value=\"polyline\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGLinearGradientComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGLinearGradientComponent\" /><param name=\"api\" value=\"linearGradient\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGRadialGradientComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGRadialGradientComponent\" /><param name=\"api\" value=\"radialGradient\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGDefsComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGDefsComponent\" /><param name=\"api\" value=\"defs\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGStopComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGStopComponent\" /><param name=\"api\" value=\"stop\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WXSVGPathComponent\"><param name=\"category\" value=\"component\" /><param name=\"ios-package\" value=\"WXSVGPathComponent\" /><param name=\"api\" value=\"path\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "weex-adapter-image": {
+            "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+        },
+        "weex-svg": {
+            "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [],
+    "plugin_metadata": {
+        "weex-adapter-image": "1.0.2",
+        "weex-svg": "0.1.0"
+    }
+}
