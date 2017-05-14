@@ -50,7 +50,7 @@ function walk(dir) {
           entry[name] = pathTo.join(__dirname, entryFile) + '?entry=true';
         } 
         weexEntry[name] = fullpath + '?entry=true';
-      } else if (stat.isDirectory() && file !== 'build' && file !== 'include') {
+      } else if (stat.isDirectory() && file !== 'build' && file !== 'include' && file !=='mixins' && file !=='components') {
         const subdir = pathTo.join(dir, file);
         walk(subdir);
       }
@@ -60,20 +60,35 @@ function walk(dir) {
 walk();
 // web need vue-loader
 const plugins = [
-  new webpack.optimize.UglifyJsPlugin({minimize: true}),
+  // new webpack.optimize.UglifyJsPlugin({minimize: true}),
   new webpack.BannerPlugin({
     banner: '// { "framework": ' + (fileType === '.vue' ? '"Vue"' : '"Weex"') + '} \n',
     raw: true,
     exclude: 'Vue'
   })
 ];
+
+const resolve = {
+  // require时省略的扩展名，如：require('module') 不需要module.js
+  extensions: ['.js', '.vue'],
+  // 别名，可以直接使用别名来代表设定的路径以及其他
+  alias: {
+      '~': pathTo.resolve(__dirname, './src'),
+      '~components': pathTo.resolve(__dirname, './src/components'),
+      '~include': pathTo.resolve(__dirname, './src/include'),
+      '~mixins': pathTo.resolve(__dirname, './src/mixins'),
+      '~views': pathTo.resolve(__dirname, './src/views')
+  }
+ }
+
 const webConfig = {
   context: pathTo.join(__dirname, ''),
   entry: entry,
   output: {
     path: pathTo.join(__dirname, 'dist'),
-    filename: '[name].web.js',
+    filename: 'web/[name].js',
   },
+
   module: {
     // webpack 2.0 
     rules: [
@@ -83,6 +98,9 @@ const webConfig = {
           loader: 'babel-loader'
         }],
         exclude: /node_modules/
+      },{ 
+          test: /\.json$/, 
+          loader: 'json-loader' 
       },
       {
         test: /\.vue(\?[^?]+)?$/,
@@ -92,13 +110,14 @@ const webConfig = {
       }
     ]
   },
+  resolve: resolve,
   plugins: plugins
 };
 const weexConfig = {
   entry: weexEntry,
   output: {
     path: pathTo.join(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: 'weex/[name].js',
   },
   module: {
     rules: [
@@ -114,8 +133,10 @@ const weexConfig = {
         use: [{
           loader: 'weex-loader'
         }]
-      },
-      {
+      },{ 
+          test: /\.json$/, 
+          loader: 'json-loader' 
+      },{
         test: /\.we(\?[^?]+)?$/,
         use: [{
           loader: 'weex-loader'
@@ -123,6 +144,7 @@ const weexConfig = {
       }
     ]
   },
+  resolve: resolve,
   plugins: plugins,
 };
 

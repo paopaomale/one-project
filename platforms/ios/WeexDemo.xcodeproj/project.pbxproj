@@ -28,6 +28,7 @@
 		84361D5B1CA10F8E00F43825 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 775BEE8A1C1E8ECC008D1629 /* Assets.xcassets */; };
 		84D7CAC71CE3266C00D48D46 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475ACA01CD8444A0044E96C /* libsqlite3.0.tbd */; };
 		8A0B5EFFF75BF82EA481983D /* libPods-WeexUITestDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E48C20F443AA337D1FE97622 /* libPods-WeexUITestDemo.a */; };
+		ACE0AEA31EC7048D008CF69D /* ad.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE0AEA21EC7048D008CF69D /* ad.png */; };
 		D3DB97659EA84DC3ADEFA660 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B116DBF2254E48A0816816AE /* ImageIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D5FFB0F3F6F246E9A93F5369 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983B223F3951480F8D2048E3 /* CoreLocation.framework */; };
 		DC5E503E1D0D97130059F0EB /* weex.png in Resources */ = {isa = PBXBuildFile; fileRef = DC5E503C1D0D97130059F0EB /* weex.png */; };
@@ -87,6 +88,7 @@
 		84361D761CA10F8F00F43825 /* WeexUITestDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "WeexUITestDemo-Info.plist"; path = "/Users/admin/Documents/03_project_git/01_Weex/weex-samples/ios/WeexUITestDemo-Info.plist"; sourceTree = "<absolute>"; };
 		9420131417A731ED089B0814 /* Pods-WeexDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeexDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeexDemo/Pods-WeexDemo.release.xcconfig"; sourceTree = "<group>"; };
 		983B223F3951480F8D2048E3 /* CoreLocation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		ACE0AEA21EC7048D008CF69D /* ad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ad.png; sourceTree = "<group>"; };
 		B116DBF2254E48A0816816AE /* ImageIO.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		BECB15C78BC5454C86CFBC04 /* AVFoundation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DC5E503C1D0D97130059F0EB /* weex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weex.png; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		DC65C4421CEB006C00B2F84F /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				ACE0AEA21EC7048D008CF69D /* ad.png */,
 				DCD286DF1CF491AC00C601CA /* weex-icon.png */,
 				DC5E503C1D0D97130059F0EB /* weex.png */,
 				DC5E503D1D0D97130059F0EB /* weex@2x.png */,
@@ -344,7 +347,8 @@
 				TargetAttributes = {
 					775BEE7A1C1E8ECC008D1629 = {
 						CreatedOnToolsVersion = 7.1.1;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = L264ET32M6;
+						ProvisioningStyle = Automatic;
 					};
 					775BEE931C1E8ECC008D1629 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -384,6 +388,7 @@
 				59EA0DA71D2E7D19004F904A /* Images.xcassets in Resources */,
 				0A86901F1E1E7872000A3F81 /* WeexDemo-Info.plist in Resources */,
 				0AE277DC1DE56A5600C6D86A /* config.xml in Resources */,
+				ACE0AEA31EC7048D008CF69D /* ad.png in Resources */,
 				DC65C4FA1CEB032F00B2F84F /* bundlejs in Resources */,
 				775BEE8B1C1E8ECC008D1629 /* Assets.xcassets in Resources */,
 			);
@@ -695,7 +700,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = L264ET32M6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -711,9 +716,10 @@
 					"$(inherited)",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.taobao.WeexPlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.paopao.one-project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -725,8 +731,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = L264ET32M6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -742,9 +748,10 @@
 					"$(inherited)",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.taobao.WeexPlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.paopao.one-project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

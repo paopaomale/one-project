@@ -32,5 +32,5 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="launch_locally" value="ture" />
     <preference name="launch_url" value=""/>
-    <preference name="local_url" value="index.js" />
+    <preference name="local_url" value="main/index.js" />
 </widget>
