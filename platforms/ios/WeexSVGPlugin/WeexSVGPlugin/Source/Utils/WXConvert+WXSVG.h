@@ -33,5 +33,6 @@
 
 + (WXSVGBrush *)WXSVGCGColor:(id)value;
 + (WXSVGCGFloatArray)WXSVGConvertColor:(NSString *)color;
++(CGLineCap) CGLineCap:(NSString *)lineCapValue;
 
 @end

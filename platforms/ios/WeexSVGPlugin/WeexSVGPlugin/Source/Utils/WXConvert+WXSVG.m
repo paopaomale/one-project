@@ -384,4 +384,16 @@ RCT_ENUM_CONVERTER(RNSVGVBMOS, (@{
     return [self colorWithHex:hexValue alpha:1.0];
 }
 
++(CGLineCap) CGLineCap:(NSString *)lineCapValue
+{
+    if([lineCapValue isEqualToString:@"round"]){
+        return kCGLineCapRound;
+    } else if([lineCapValue isEqualToString:@"square"]){
+        return kCGLineCapSquare;
+    } else {
+        return kCGLineCapButt;
+    }
+}
+
+
 @end

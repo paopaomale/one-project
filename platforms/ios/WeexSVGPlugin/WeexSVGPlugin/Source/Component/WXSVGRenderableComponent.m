@@ -48,6 +48,12 @@
     if (self.attributes[@"fill"]) {
         renderableView.fill = [WXConvert WXSVGCGColor:self.attributes[@"fill"]];
     }
+    if(self.attributes[@"strokeDasharray"]){
+        renderableView.strokeDasharray = [WXConvert WXSVGCGFloatArray:self.attributes[@"strokeDasharray"]] ;
+    }
+    if(self.attributes[@"strokeLinecap"]){
+        renderableView.strokeLinecap = [WXConvert CGLineCap:self.attributes[@"strokeLinecap"]] ;
+    }
     renderableView.strokeMiterlimit = 4;
     [super syncViewAttributes:view];
 
@@ -58,13 +64,19 @@
 {
     WXSVGRenderable *renderableView = (WXSVGRenderable *)self.view;
     if (attributes[@"strokeWidth"]) {
-        renderableView.strokeWidth = [self.attributes[@"strokeWidth"] floatValue];
+        renderableView.strokeWidth = [attributes[@"strokeWidth"] floatValue];
     }
     if (attributes[@"stroke"]) {
-        renderableView.stroke = [WXConvert WXSVGCGColor:self.attributes[@"stroke"]];
+        renderableView.stroke = [WXConvert WXSVGCGColor:attributes[@"stroke"]];
     }
     if (attributes[@"fill"] && ![attributes[@"fill"] isEqualToString:@"none"]) {
-        renderableView.fill = [WXConvert WXSVGCGColor:self.attributes[@"fill"]];
+        renderableView.fill = [WXConvert WXSVGCGColor:attributes[@"fill"]];
+    }
+    if(attributes[@"strokeDasharray"]){
+        renderableView.strokeDasharray = [WXConvert WXSVGCGFloatArray:attributes[@"strokeDasharray"]] ;
+    }
+    if(attributes[@"strokeLinecap"]){
+        renderableView.strokeLinecap = [WXConvert CGLineCap:attributes[@"strokeLinecap"]] ;
     }
 }
 
