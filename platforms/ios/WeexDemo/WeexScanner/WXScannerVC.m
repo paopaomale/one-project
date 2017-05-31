@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self setupNaviBar];
+//    [self setupNaviBar];
     
 #if !(TARGET_IPHONE_SIMULATOR)
     self.session = [[AVCaptureSession alloc]init];
@@ -59,6 +59,11 @@
     [super viewWillAppear:animated];
     
     [self.view.layer addSublayer:_captureLayer];
+    UIButton * btn1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn1.frame = CGRectMake(self.view.frame.size.width/2-75, self.view.frame.size.height/3*2, 150, 60);
+    btn1.backgroundColor = [UIColor yellowColor];
+    [btn1 setTitle:@"扫一扫" forState:UIControlStateNormal];
+    [self.view addSubview:btn1];
     [_session startRunning];
 }
 

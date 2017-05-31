@@ -34,21 +34,26 @@
     url = [NSURL URLWithString:UITEST_HOME_URL];
 #endif
     
+    // 初始化 weexSDK
     [self initWeexSDK];
+    // 注册weex插件
     [WeexPluginManager registerWeexPlugin];
+    // 使用 url 去设置appliction.window.rootViewController
     [self loadCustomContainWithScannerWithUrl:url];
 }
 
 + (void)initWeexSDK
 {
-    [WXAppConfiguration setAppGroup:@"AliApp"];
-    [WXAppConfiguration setAppName:@"WeexDemo"];
+    [WXAppConfiguration setAppGroup:@"PAOPAO"];
+    [WXAppConfiguration setAppName:@"跑跑"];
     [WXAppConfiguration setAppVersion:@"1.8.3"];
     [WXAppConfiguration setExternalUserAgent:@"ExternalUA"];
     
     [WXSDKEngine initSDKEnvironment];
     
-    [WXSDKEngine registerHandler:[WXImgLoaderDefaultImpl new] withProtocol:@protocol(WXImgLoaderProtocol)];
+    // 注册自定义的component,handle,module
+//    [WXSDKEngine registerHandler:[WXImgLoaderDefaultImpl new] withProtocol:@protocol(WXImgLoaderProtocol)];
+    [WXSDKEngine registerModule:@"scanner" withClass:NSClassFromString(@"PAOScanner")];
     
 #ifdef DEBUG
     [WXLog setLogLevel:WXLogLevelLog];

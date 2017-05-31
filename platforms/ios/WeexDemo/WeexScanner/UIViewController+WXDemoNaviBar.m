@@ -15,36 +15,38 @@
 
 - (void)setupNaviBar
 {
+    // 手势边缘右滑
     UIScreenEdgePanGestureRecognizer *edgePanGestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(edgePanGesture:)];
     edgePanGestureRecognizer.delegate = self;
     edgePanGestureRecognizer.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:edgePanGestureRecognizer];
     
-    NSArray *ver = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
-    if ([[ver objectAtIndex:0] intValue] >= 7) {
-        // iOS 7.0 or later
-        self.navigationController.navigationBar.barTintColor = WEEX_COLOR;
-        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        self.navigationController.navigationBar.translucent = NO;
-    }else {
-        // iOS 6.1 or earlier
-        self.navigationController.navigationBar.tintColor = WEEX_COLOR;
-    }
-    
-    [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                      [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
-    self.navigationItem.title = @"Weex Playground";
-    
-    if (self.navigationItem.leftBarButtonItem) return;
-    
-    UIBarButtonItem *leftItem;
-    if(![[self.navigationController.viewControllers objectAtIndex:0] isEqual:self]) {
-        leftItem = [self backButtonItem];
-    } else {
-        leftItem = [self leftBarButtonItem];
-    }
-    
-    self.navigationItem.leftBarButtonItems = @[leftItem];
+    // 设置 导航栏
+//    NSArray *ver = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+//    if ([[ver objectAtIndex:0] intValue] >= 7) {
+//        // iOS 7.0 or later
+//        self.navigationController.navigationBar.barTintColor = WEEX_COLOR;
+//        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+//        self.navigationController.navigationBar.translucent = NO;
+//    }else {
+//        // iOS 6.1 or earlier
+//        self.navigationController.navigationBar.tintColor = WEEX_COLOR;
+//    }
+//    
+//    [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+//                                                                      [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+//    self.navigationItem.title = @"Weex Playground";
+//    
+//    if (self.navigationItem.leftBarButtonItem) return;
+//    
+//    UIBarButtonItem *leftItem;
+//    if(![[self.navigationController.viewControllers objectAtIndex:0] isEqual:self]) {
+//        leftItem = [self backButtonItem];
+//    } else {
+//        leftItem = [self leftBarButtonItem];
+//    }
+//    
+//    self.navigationItem.leftBarButtonItems = @[leftItem];
 }
 
 - (void)edgePanGesture:(UIScreenEdgePanGestureRecognizer*)edgePanGestureRecognizer

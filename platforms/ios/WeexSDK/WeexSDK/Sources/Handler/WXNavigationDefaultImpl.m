@@ -73,7 +73,14 @@
     
     WXBaseViewController *vc = [[WXBaseViewController alloc]initWithSourceURL:[NSURL URLWithString:param[@"url"]]];
     vc.hidesBottomBarWhenPushed = YES;
-    [container.navigationController pushViewController:vc animated:animated];
+    vc.view.backgroundColor = [UIColor whiteColor];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 耗时的操作
+        [NSThread sleepForTimeInterval:0.2];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [container.navigationController pushViewController:vc animated:animated];
+        });
+    });
     [self callback:block code:MSG_SUCCESS data:nil];
 }
 

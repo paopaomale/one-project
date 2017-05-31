@@ -45,10 +45,11 @@
     [super viewDidLoad];
     
     [self setupNaviBar];
-    [self setupRightBarItem];
+//    [self setupRightBarItem];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _weexHeight = self.view.frame.size.height - 64;
+//    _weexHeight = self.view.frame.size.height - 64;
+     _weexHeight = self.view.frame.size.height;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRefreshInstance:) name:@"RefreshInstance" object:nil];
     
@@ -252,15 +253,15 @@
     return YES;
 }
 
-- (void)addNaviationBar
-{
-    self.navigationController.navigationBarHidden = NO;
-}
-
-- (void)removeNaviationBar
-{
-    self.navigationController.navigationBarHidden = YES;
-}
+//- (void)addNaviationBar
+//{
+//    self.navigationController.navigationBarHidden = NO;
+//}
+//
+//- (void)removeNaviationBar
+//{
+//    self.navigationController.navigationBarHidden = YES;
+//}
 
 #pragma mark -
 #pragma mark - UIResponder support motion
@@ -278,10 +279,10 @@
     static BOOL shakeMarker = YES;
     if (motion == UIEventSubtypeMotionShake) {
         if (shakeMarker) {
-            [self addNaviationBar];
+//            [self addNaviationBar];
             shakeMarker = NO;
         }else {
-            [self removeNaviationBar];
+//            [self removeNaviationBar];
             shakeMarker = YES;
         }
     }

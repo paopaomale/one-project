@@ -63,14 +63,14 @@
 - (void)updateAttributes:(NSDictionary *)attributes
 {
     WXSVGRenderable *renderableView = (WXSVGRenderable *)self.view;
-    if (attributes[@"strokeWidth"]) {
-        renderableView.strokeWidth = [attributes[@"strokeWidth"] floatValue];
+    if (self.attributes[@"strokeWidth"]) {
+        renderableView.strokeWidth = [self.attributes[@"strokeWidth"] floatValue];
     }
-    if (attributes[@"stroke"]) {
-        renderableView.stroke = [WXConvert WXSVGCGColor:attributes[@"stroke"]];
+    if (self.attributes[@"stroke"]) {
+        renderableView.stroke = [WXConvert WXSVGCGColor:self.attributes[@"stroke"]];
     }
-    if (attributes[@"fill"] && ![attributes[@"fill"] isEqualToString:@"none"]) {
-        renderableView.fill = [WXConvert WXSVGCGColor:attributes[@"fill"]];
+    if (self.attributes[@"fill"] && ![self.attributes[@"fill"] isEqualToString:@"none"]) {
+        renderableView.fill = [WXConvert WXSVGCGColor:self.attributes[@"fill"]];
     }
     if(attributes[@"strokeDasharray"]){
         renderableView.strokeDasharray = [WXConvert WXSVGCGFloatArray:attributes[@"strokeDasharray"]] ;

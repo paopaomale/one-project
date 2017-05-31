@@ -50,11 +50,12 @@
     if (self = [super init]) {
         if ([self greater8SysVer]) {
             _playerViewController = [AVPlayerViewController new];
-            
+            AVPlayerViewController * AVVC= (AVPlayerViewController *)_playerViewController;
+            AVVC.showsPlaybackControls = NO;
         } else {
             _playerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:nil];
             MPMoviePlayerViewController *MPVC = (MPMoviePlayerViewController*)_playerViewController;
-            MPVC.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
+            MPVC.moviePlayer.controlStyle = MPMovieControlStyleNone;
             MPVC.moviePlayer.shouldAutoplay = NO;
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(playFinish)

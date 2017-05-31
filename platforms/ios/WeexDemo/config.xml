@@ -2,10 +2,9 @@
 <widget id="com.taobao.WeexDemo" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://*">
     <name>WeexDemo</name>
     <description>
-        A sample Weex application that responds to the deviceready event.
     </description>
-    <author email=" " href="https://alibaba.github.io/weex/">
-        Weex Team
+    <author email=" " href=" ">
+        跑跑
     </author>
     <content src="index.html" />
     <access origin="*" />
