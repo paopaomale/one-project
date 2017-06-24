@@ -47,6 +47,7 @@
      */
     UIColor *_backgroundColor;
     NSString *_backgroundImage;
+    NSString *_blurEffect;
     WXClipType _clipToBounds;
     UIView *_view;
     CGFloat _opacity;
@@ -213,5 +214,8 @@
 - (void)_configWXComponentA11yWithAttributes:(NSDictionary *)attributes;
 
 - (void)setGradientLayer;
+
+- (void)setBlurEffect;
+
 
 @end

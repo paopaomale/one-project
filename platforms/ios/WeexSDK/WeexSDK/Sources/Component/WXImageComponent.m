@@ -191,7 +191,8 @@ static dispatch_queue_t WXImageUpdateQueue;
     
     WXRoundedRect *borderRect = [[WXRoundedRect alloc] initWithRect:rect topLeft:_borderTopLeftRadius topRight:_borderTopRightRadius bottomLeft:_borderBottomLeftRadius bottomRight:_borderBottomRightRadius];
 
-    WXRadii *radii = borderRect.radii;    
+    WXRadii *radii = borderRect.radii;
+    // 如果有边框圆角属性，则设置圆角区域
     if ([radii hasBorderRadius]) {
         CGFloat topLeft = radii.topLeft, topRight = radii.topRight, bottomLeft = radii.bottomLeft, bottomRight = radii.bottomRight;
         UIBezierPath *bezierPath = [UIBezierPath wx_bezierPathWithRoundedRect:rect topLeft:topLeft topRight:topRight bottomLeft:bottomLeft bottomRight:bottomRight];

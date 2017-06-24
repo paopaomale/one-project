@@ -37,6 +37,7 @@
  *
  */
 - (instancetype)initWithSourceURL:(NSURL *)sourceURL;
+- (instancetype)initWithSourceURL:(NSURL *)sourceURL pushData:(NSDictionary *)pushData pushBlock:(void(^)())pushBlock;
 
 /**
  * @abstract refreshes the weex view in controller.

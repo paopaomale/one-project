@@ -35,6 +35,7 @@
 @property (nonatomic, assign) double delay;
 @property (nonatomic, strong) CAMediaTimingFunction *timingFunction;
 @property (nonatomic, assign) CGPoint originAnchorPoint;
+@property (nonatomic, assign) double repeatCount;
 
 @end
 
@@ -166,6 +167,7 @@ WX_EXPORT_METHOD(@selector(transition:args:callback:))
 
     double duration = [args[@"duration"] doubleValue] / 1000;
     double delay = [args[@"delay"] doubleValue] / 1000;
+    double repeatCount = [args[@"repeatCount"] doubleValue];
     CAMediaTimingFunction *timingFunction = [WXConvert CAMediaTimingFunction:args[@"timingFunction"]];
     NSDictionary *styles = args[@"styles"];
     for (NSString *property in styles) {
@@ -197,6 +199,9 @@ WX_EXPORT_METHOD(@selector(transition:args:callback:))
                 newInfo.propertyName = @"transform.scale.x";
                 newInfo.fromValue = @(oldTransform.scaleX);
                 newInfo.toValue = @(wxTransform.scaleX);
+                if(repeatCount){
+                    newInfo.repeatCount = repeatCount;
+                }
                 [infos addObject:newInfo];
             }
             
@@ -205,6 +210,9 @@ WX_EXPORT_METHOD(@selector(transition:args:callback:))
                 newInfo.propertyName = @"transform.scale.y";
                 newInfo.fromValue = @(oldTransform.scaleY);
                 newInfo.toValue = @(wxTransform.scaleX);
+                if(repeatCount){
+                    newInfo.repeatCount = repeatCount;
+                }
                 [infos addObject:newInfo];
             }
             
@@ -288,6 +296,11 @@ WX_EXPORT_METHOD(@selector(transition:args:callback:))
     animation.timingFunction = info.timingFunction;
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
+    if(info.repeatCount){
+        animation.repeatCount = info.repeatCount;
+        animation.autoreverses = YES;
+    }
+
     
     WXAnimationDelegate *delegate = [[WXAnimationDelegate alloc] initWithAnimationInfo:info finishBlock:^(BOOL isFinish) {
         
@@ -307,5 +320,7 @@ WX_EXPORT_METHOD(@selector(transition:args:callback:))
     }
     [layer addAnimation:animation forKey:info.propertyName];
 }
+
+
 
 @end

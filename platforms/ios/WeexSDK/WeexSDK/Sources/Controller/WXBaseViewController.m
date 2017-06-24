@@ -30,6 +30,8 @@
 @property (nonatomic, strong) WXSDKInstance *instance;
 @property (nonatomic, strong) UIView *weexView;
 @property (nonatomic, strong) NSURL *sourceURL;
+@property (nonatomic,strong) NSDictionary *pushData;
+@property (nonatomic,copy) void(^pushBlock)();
 
 @end
 
@@ -41,8 +43,17 @@
     [self _removeObservers];
 }
 
-- (instancetype)initWithSourceURL:(NSURL *)sourceURL
-{
+- (instancetype)initWithSourceURL:(NSURL *)sourceURL pushData:(NSDictionary *)pushData pushBlock:(void(^)())pushBlock {
+    if ((self = [super init])) {
+        self.pushData = pushData;
+        self.pushBlock = pushBlock;
+        return [self initWithSourceURL:sourceURL];
+    }
+    return self;
+    
+}
+
+- (instancetype)initWithSourceURL:(NSURL *)sourceURL {
     if ((self = [super init])) {
         self.sourceURL = sourceURL;
         self.hidesBottomBarWhenPushed = YES;
@@ -140,6 +151,8 @@
     [_instance renderWithURL:[NSURL URLWithString:newURL] options:@{@"bundleUrl":sourceURL.absoluteString} data:nil];
     
     __weak typeof(self) weakSelf = self;
+    
+   
     _instance.onCreate = ^(UIView *view) {
         [weakSelf.weexView removeFromSuperview];
         weakSelf.weexView = view;
@@ -151,6 +164,9 @@
     };
     
     _instance.renderFinish = ^(UIView *view) {
+        if(weakSelf.pushBlock){
+            weakSelf.pushBlock();
+        }
         [weakSelf _updateInstanceState:WeexInstanceAppear];
     };
 }
@@ -161,6 +177,10 @@
         _instance.state = state;
         
         if (state == WeexInstanceAppear) {
+            if(_pushData){
+                 [[WXSDKManager bridgeMgr] fireEvent:_instance.instanceId ref:WX_SDK_ROOT_REF type:@"viewpush" params:@{@"pushData":_pushData} domChanges:nil];
+            }
+           
             [[WXSDKManager bridgeMgr] fireEvent:_instance.instanceId ref:WX_SDK_ROOT_REF type:@"viewappear" params:nil domChanges:nil];
         } else if (state == WeexInstanceDisappear) {
             [[WXSDKManager bridgeMgr] fireEvent:_instance.instanceId ref:WX_SDK_ROOT_REF type:@"viewdisappear" params:nil domChanges:nil];

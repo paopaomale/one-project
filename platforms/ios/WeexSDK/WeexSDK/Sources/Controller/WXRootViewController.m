@@ -125,9 +125,13 @@ typedef void(^OperationBlock)(void);
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if (WX_SYS_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+        
         if (self.childViewControllers.count > 1) { // 不是根控制器
+            
             viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavBack"] style:0 target:self action:@selector(back)];
+            return;
         }
+        
         [super pushViewController:viewController animated:animated];
         
         return;

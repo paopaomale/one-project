@@ -65,24 +65,42 @@
         return;
     }
     
+
+    
     BOOL animated = YES;
     NSString *obj = [[param objectForKey:@"animated"] lowercaseString];
     if (obj && [obj isEqualToString:@"false"]) {
         animated = NO;
     }
     
-    WXBaseViewController *vc = [[WXBaseViewController alloc]initWithSourceURL:[NSURL URLWithString:param[@"url"]]];
-    vc.hidesBottomBarWhenPushed = YES;
+    WXBaseViewController *vc = [[WXBaseViewController alloc]initWithSourceURL:[NSURL URLWithString:param[@"url"]] pushData:param[@"pushData"] pushBlock:^(){
+//         [container.navigationController pushViewController:vc animated:animated];
+    }];
     vc.view.backgroundColor = [UIColor whiteColor];
+    
+    vc.hidesBottomBarWhenPushed = YES;
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // 耗时的操作
+//        // 耗时的操作
         [NSThread sleepForTimeInterval:0.2];
+//        // 初始化 CATranstion
+//        CATransition *transition = [CATransition animation];
+//        // 设置动画时间
+//        transition.duration = 1.0f;
+//        // 设置动画的 速度效果和 动画类型
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+//        transition.type = @"cube";
+//        // 设置动画的方向
+//        transition.subtype = kCATransitionFromRight;
+//        // 进行跳转
         dispatch_async(dispatch_get_main_queue(), ^{
-            [container.navigationController pushViewController:vc animated:animated];
+//            [container.navigationController.view.layer addAnimation:transition forKey:nil];
+              [container.navigationController pushViewController:vc animated:animated];
         });
     });
     [self callback:block code:MSG_SUCCESS data:nil];
 }
+
 
 - (void)popViewControllerWithParam:(NSDictionary *)param completion:(WXNavigationResultBlock)block
                      withContainer:(UIViewController *)container

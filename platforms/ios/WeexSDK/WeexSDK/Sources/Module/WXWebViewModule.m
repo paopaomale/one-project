@@ -30,6 +30,7 @@ WX_EXPORT_METHOD(@selector(notifyWebview:data:))
 WX_EXPORT_METHOD(@selector(reload:))
 WX_EXPORT_METHOD(@selector(goBack:))
 WX_EXPORT_METHOD(@selector(goForward:))
+WX_EXPORT_METHOD(@selector(getCurrentUrl:callback:))
 
 - (void)performBlockWithWebView:(NSString *)elemRef block:(void (^)(WXWebComponent *))block {
     if (!elemRef) {
@@ -78,4 +79,24 @@ WX_EXPORT_METHOD(@selector(goForward:))
     }];
 }
 
+- (void)getCurrentUrl:(NSString *)elemRef callback:(WXModuleCallback)callback{
+    if(!elemRef){
+        if (callback) {
+            callback(@{@"result":@"failed",@"data":@"elemRef must hava"});
+        }
+        return;
+    }
+    WXWebComponent *webview = (WXWebComponent *)[self.weexInstance componentForRef:elemRef];
+    if(webview){
+        NSString *currentURL = [webview getCurrentUrl];
+        if (callback) {
+            callback(@{@"result":@"success",@"data":currentURL});
+        }
+    } else {
+        if (callback) {
+            callback(@{@"result":@"failed",@"data":@"webview must hava"});
+        }
+    }
+
+}
 @end

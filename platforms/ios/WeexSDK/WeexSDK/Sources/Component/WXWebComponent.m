@@ -48,6 +48,8 @@
 
 @property (nonatomic, strong) NSString *url;
 
+@property (nonatomic, strong) NSString *currentURL;
+
 @property (nonatomic, assign) BOOL startLoadEvent;
 
 @property (nonatomic, assign) BOOL finishLoadEvent;
@@ -63,6 +65,7 @@
 WX_EXPORT_METHOD(@selector(goBack))
 WX_EXPORT_METHOD(@selector(reload))
 WX_EXPORT_METHOD(@selector(goForward))
+WX_EXPORT_METHOD(@selector(getCurrentUrl))
 
 - (instancetype)initWithRef:(NSString *)ref type:(NSString *)type styles:(NSDictionary *)styles attributes:(NSDictionary *)attributes events:(NSArray *)events weexInstance:(WXSDKInstance *)weexInstance
 {
@@ -156,6 +159,13 @@ WX_EXPORT_METHOD(@selector(goForward))
     if ([self.webview canGoForward]) {
         [self.webview goForward];
     }
+}
+- (NSString *)getCurrentUrl {
+    __weak typeof(self) weakSelf = self;
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        weakSelf.currentURL =[weakSelf.webview stringByEvaluatingJavaScriptFromString:@"document.location.href"];
+    });
+    return self.currentURL;
 }
 
 - (void)notifyWebview:(NSDictionary *) data
